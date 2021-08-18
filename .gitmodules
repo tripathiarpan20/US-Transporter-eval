@@ -1,6 +1,1 @@
-[submodule "phasepack"]
-	path = phasepack
-	url = https://github.com/alimuldal/phasepack.git
-[submodule "pyssim"]
-	path = pyssim
-	url = https://github.com/jterrace/pyssim.git
+
