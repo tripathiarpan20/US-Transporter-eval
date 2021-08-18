@@ -1,0 +1,6 @@
+*.pt
+*.ckpt
+*.mp4
+*.out
+*.pyc
+lightning_logs/
