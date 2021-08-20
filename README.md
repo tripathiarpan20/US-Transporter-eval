@@ -6,6 +6,8 @@ This is the evaluation repository of Keypoint models trained on Lung and Wrist U
 ```
 git clone --recursive https://github.com/tripathiarpan20/US-Transporter-eval.git
 pip install -r requirements.txt
+cd US-Transporter-eval
+mv phasepack/phasepack/* phasepack/
 ```
 
 # Model Checkpoints
