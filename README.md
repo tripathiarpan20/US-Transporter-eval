@@ -25,7 +25,7 @@ gdown --id 1TMMNh6Vp07ejBDInsar5wXhljs9q7T57
   - [X] LUS
   - [X] WUS  
 
-See `US_Transporter_eval.ipynb` for evaluation commands on Wrist and LUS Ultrasound images and videos.
+See `US_Transporter_eval.ipynb` for evaluation commands on Wrist and LUS Ultrasound images and videos, the outputs can be found in `/content/US-Transporter-eval/output` folder within the Colab session after executing relevant cells.
 
 <img src="transporter.png" alt="Transporter" style="height: 700px; width:300px;"/>
 
