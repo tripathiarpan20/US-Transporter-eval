@@ -38,7 +38,7 @@ import utils
 #from generate_lus_data_wrist_radon import *
 import pytorch_lightning as pl
 import sys
-
+import matplotlib.pyplot as plt
 
 
 def normalise(img):
@@ -189,13 +189,8 @@ def analyticEstimator(img, nscale=5, minWaveLength=10, mult=2.1, sigmaOnf=0.55, 
     return LP, FS, LE  #, totalEnergy, T
 
 def bone_prob_map(img, minwl = 10):
-  #sh = normalise(shadow(img))
   ibs = normalise(integrated_backscatter_energy(img))
-  #shibs = normalise(np.multiply(ibs, sh))
-  #shibs = shibs * (shibs >= shibs.mean())
   LP,FS,LE = analyticEstimator(normalise(img) ** 4, minWaveLength = minwl)
-
-  #final = normalise( sh * (1-ibs) * LE * FS )
   final = normalise( normalise(LP) * normalise(FS) * (1-ibs))
   meanFinal = (final*(final > 0)).mean()
   final = final * (final > 1.5*meanFinal)
@@ -206,6 +201,8 @@ depending on 'sample_rate' variable) of US video sequences
 (with similar visual qualities, due to them being from the same video as well as same jittering applied to both........) 
 
 """
+
+
 
 
 
