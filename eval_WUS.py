@@ -26,6 +26,12 @@ def depth_decay_coeff(x_cur, x = 256):
   else:
     return 0.6 + 0.3*(x_cur)/x
 
+test_transform = transforms.Compose([
+                    transforms.ToPILImage(), 
+                    transforms.Resize((256,256)),
+                    transforms.ToTensor(), 
+                   #transforms.Normalize(0.5, 0.5)   #DONE
+                ])
 cdict = {0: 'c', 1: 'b', 2: 'g', 3: 'r', 4: 'c', 5: 'm', 6: 'k', 7: 'y', 8: 'w', 9: 'k'} #only 8 standard colors in plt
 
 def pl_forward_LUS(test_input):    
@@ -71,16 +77,16 @@ def pl_forward_LUS(test_input):
     #Refining vertical Radon features
     test_input_radon_bpm[0][1] = normalise(normalise(test_input_radon_bpm[0][1]) * test_input_orig[0])
 
-    test_input_radon_bpm = test_input_radon_bpm.repeat_interleave(5,1)
+    #test_input_radon_bpm = test_input_radon_bpm.repeat_interleave(5,1)
 
     #Applying BPM on refined horizontal features extr. by Radon filter
     for i in range(test_input_radon_bpm.shape[0]):
-    for j in range(0,5):
-        test_input_radon_bpm[i,j] = torch.Tensor(bone_prob_map(test_input_radon_bpm[i,j].cpu().detach().numpy(), minwl = 15 + 3*j)) * test_input_radon_bpm[i,j].cpu()
-    #Applying BPM on refined vertical features extr. by Radon filter
+      for j in range(0,5):
+          test_input_radon_bpm[i,j] = torch.Tensor(bone_prob_map(test_input_radon_bpm[i,j].cpu().detach().numpy(), minwl = 15 + 3*j)) * test_input_radon_bpm[i,j].cpu()
+      #Applying BPM on refined vertical features extr. by Radon filter
     for i in range(test_input_radon_bpm.shape[0]):  
-    for j in range(5,10):
-        test_input_radon_bpm[i,j] = torch.Tensor(bone_prob_map(test_input_radon_bpm[i,j].cpu().detach().numpy(), minwl = 15 + 3*j)) * test_input_radon_bpm[i,j].cpu()
+      for j in range(5,10):
+          test_input_radon_bpm[i,j] = torch.Tensor(bone_prob_map(test_input_radon_bpm[i,j].cpu().detach().numpy(), minwl = 15 + 3*j)) * test_input_radon_bpm[i,j].cpu()
 
     test_input_orig = test_input_orig.to('cpu')
     keypoints = gaussian_map(spatial_softmax(model_wghtKpt.model.point_net(test_input_radon_bpm)), std=model_wghtKpt.model.hlam_weights)
@@ -103,7 +109,7 @@ def pl_forward_LUS(test_input):
 
 model_wghtKpt = plTransporter(get_config())
 model_wghtKpt.to(args.device)
-model_wghtKpt.load_state_dict(torch.load(args.ckpt)['state_dict'])
+model_wghtKpt.load_state_dict(torch.load(args.ckpt,map_location=args.device)['state_dict'])
 
 
 

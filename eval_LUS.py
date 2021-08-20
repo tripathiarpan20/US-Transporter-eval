@@ -111,7 +111,7 @@ def pl_forward_LUS(test_input):
 
 model_wghtKpt = plTransporter(get_config())
 model_wghtKpt.to(args.device)
-model_wghtKpt.load_state_dict(torch.load(args.ckpt)['state_dict'])
+model_wghtKpt.load_state_dict(torch.load(args.ckpt,map_location=args.device)['state_dict'])
 
 
 
@@ -141,6 +141,9 @@ elif args.vid != '' and args.frame_no != -1:
 
   num_sec, fps = torchvision.io.read_video_timestamps(args.vid, pts_unit = 'pts')
   num_sec = len(num_sec)
+  if num_sec == 0:
+    print('Please enter a valid video path with appropriate extension')
+    exit()
   frames, _, _ = torchvision.io.read_video(args.vid, pts_unit='pts')
   test_input = test_transform(frames[args.frame_no].permute(2,0,1))
   pl_forward_LUS(test_input)
