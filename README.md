@@ -29,4 +29,8 @@ See `US_Transporter_eval.ipynb` for evaluation commands on Wrist and LUS Ultraso
 
 <img src="transporter.png" alt="Transporter" style="height: 700px; width:300px;"/>
 
+# References  
 
+1. [Third-party PyTorch Implementation of Transporter](https://github.com/ethanluoyc/transporter-pytorch)
+2. [Phasepack](https://github.com/alimuldal/phasepack/tree/a7eaf26f4bd91b6cb7e3ac6cb93e9fd1c645e8de)
+3. [PySSIM](https://github.com/jterrace/pyssim/tree/ff9bd90c3eb7525013ad46babf66b7cc78391e89)
