@@ -229,7 +229,7 @@ def _get_model_orig(config):
     pose_regressor = transporter_orig.PoseRegressor(config.image_channels, config.k)
     refine_net = transporter_orig.RefineNet(config.image_channels)
 
-    return transporter.Transporter(feature_encoder, pose_regressor, refine_net, std = config.htmaplam)
+    return transporter_orig.Transporter(feature_encoder, pose_regressor, refine_net, std = config.htmaplam)
 
 
 def _get_model(config):
