@@ -1,6 +1,6 @@
 # US-Transporter-eval
 
-This is the evaluation repository of Keypoint models trained on Lung and Wrist Ultrasound videos with work done additionally on the [outdated paper](https://arxiv.org/pdf/2106.05929.pdf "arXiv link")
+This is the evaluation repository of Keypoint models trained on Lung and Wrist Ultrasound relevant to the [arXiv journal](https://arxiv.org/abs/2109.06346 "arXiv link")
 
 # Setup  
 ```
